@@ -15,7 +15,7 @@ namespace Exercise8
             string cont = "Y";
             do
             {
-                Console.WriteLine("\n\tWelcome to the Calculator!");
+                Console.WriteLine("\n\n\tWelcome to the Calculator!");
                 double operand1 = GetInput1();
                 double operand2 = GetInput2();
                 int stringOperation = GetOperator();
