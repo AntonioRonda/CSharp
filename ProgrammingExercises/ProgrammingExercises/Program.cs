@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,47 +10,48 @@ using Exercise8;
 
 
 namespace ProgrammingExercises
-    {
+{
     class Program
     {
+
 
         public static void ExerciseSeven()
         {
 
-            string cont = "Y";
-            do
+
+            while (TryAgain())
             {
-
-                //Array for the Five Integers
-                int[] numbers = new int[5];
-
-                Console.WriteLine("\n\n\tWelcome to Exercise Seven");
-                Console.WriteLine("\n\n\tWrite a program that finds the greatest of given 5 numbers");
-
-                //For Loop for Five Entries
-                for (int ctr = 0; ctr < 5; ctr++)
                 {
-                    //Display the sequence of the entry
-                    int num = ctr + 1;
-                    Console.Write("\n\tEnter integer " + num + ": ");
-                    numbers[ctr] = Convert.ToInt32(Console.ReadLine());
+                    int[] numbers = new int[5];
+                    Console.WriteLine("\n\n\tWelcome to Exercise Seven");
+                    Console.WriteLine("\n\n\tWrite a program that finds the greatest of given 5 numbers");
+                    for (int ctr = 0; ctr < 5; ctr++)
+                    {
+                        int num = ctr + 1;
+                        try
+                        {
+                            Console.Write("\n\tEnter integer " + num + ": ");
+                            numbers[ctr] = Convert.ToInt32(Console.ReadLine());
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("\n\tWrong Input! No Value is assigned.");
+                        }
+
+                    }
+
+                    int maximumNumber = numbers.Max();
+                    Console.WriteLine("\n\tMaximum Number is = {0}", maximumNumber);
+
                 }
-
-                int maximumNumber = numbers.Max();
-
-                Console.WriteLine("\n\tMaximum Number is = {0}", maximumNumber);
-
-                Console.Write("\n\tDo you want to try again? Y/N: ");
-                cont = Console.ReadLine();
-
-            } while (cont == "Y" || cont == "y");
-
+            }
         }
 
         public static void ExerciseEight()
         {
-            string cont = "Y";
-            do
+
+            while (TryAgain())
+
             {
                 Console.WriteLine("\n\n\tWelcome to Exercise Eight");
                 Console.WriteLine("\n\n\tWrite a program that, depending on the user’s choice, inputs int," +
@@ -61,43 +63,41 @@ namespace ProgrammingExercises
                 switch (intVar)
                 {
                     case 0:
-                    {
-                        Console.Write("\n\tEnter int variable: ");
-                        intVar = Int32.Parse(Console.ReadLine());
-                        intVar++;
-                        Console.WriteLine("\n\tInt variable +1 = {0}", intVar);
-                        break;
-                    }
+                        {
+                            Console.Write("\n\tEnter int variable: ");
+                            intVar = Int32.Parse(Console.ReadLine());
+                            intVar++;
+                            Console.WriteLine("\n\tInt variable +1 = {0}", intVar);
+                            break;
+                        }
                     case 1:
-                    {
-                        Console.Write("\n\tEnter double variable: ");
-                        double doubleVar = double.Parse(Console.ReadLine());
-                        doubleVar++;
-                        Console.WriteLine("\n\tDouble variable +1 = {0}", doubleVar);
-                        break;
-                    }
+                        {
+                            Console.Write("\n\tEnter double variable: ");
+                            double doubleVar = double.Parse(Console.ReadLine());
+                            doubleVar++;
+                            Console.WriteLine("\n\tDouble variable +1 = {0}", doubleVar);
+                            break;
+                        }
                     case 2:
-                    {
-                        Console.Write("\n\tEnter string variable: ");
-                        string stringVar = Console.ReadLine();
-                        stringVar = stringVar + '*';
-                        Console.WriteLine("\n\tString variable +* = {0}", stringVar);
-                        break;
-                    }
+                        {
+                            Console.Write("\n\tEnter string variable: ");
+                            string stringVar = Console.ReadLine();
+                            stringVar = stringVar + '*';
+                            Console.WriteLine("\n\tString variable +* = {0}", stringVar);
+                            break;
+                        }
                     default:
                         Console.WriteLine("\n\tWrong input");
                         break;
                 }
 
-                Console.Write("\n\tDo you want to try again? Y/N: ");
-                cont = Console.ReadLine();
-            } while (cont == "Y" || cont == "y");
+            }
         }
 
         public static void ExerciseTen()
         {
 
-            string cont = "Y";
+
             do
             {
                 byte points;
@@ -122,18 +122,15 @@ namespace ProgrammingExercises
                     Console.WriteLine("\n\tWrong Input!");
 
 
-                Console.Write("\n\tDo you want to try again? Y/N: ");
-                cont = Console.ReadLine();
-
-            } while (cont == "Y" || cont == "y");
+            } while (TryAgain());
         }
 
         public static void ExerciseEleven()
         {
-
-            string cont = "Y";
-            do
+            while (TryAgain())
             {
+
+
                 Console.WriteLine("\n\tWelcome to Exercise Eleven\n");
                 Console.WriteLine("\n\t*Write a program that converts a number in the range [0…999] to words, " +
                                   "\n\tcorresponding to the English pronunciation. Examples:" +
@@ -301,16 +298,32 @@ namespace ProgrammingExercises
                 }
                 if (number == 0) Console.Write("Zero");
 
-                Console.Write("\n\tDo you want to try again? Y/N: ");
-                cont = Console.ReadLine();
 
-            } while (cont == "Y" || cont == "y");
+            }
+        }
+
+        public static Boolean TryAgain()
+        {
+
+            try
+            {
+                Console.Write("\n\tDo you want to try again? Y/N: ");
+                string cont = Console.ReadLine();
+                if (cont == "Y" || cont == "y") return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+
         }
 
         static void Main(string[] args)
         {
-            string cont = "Y";
-            do
+            while (TryAgain())
+
             {
                 Console.Write("\n\tExercise [7]" +
                               "\n\tExercise [8]" +
@@ -319,22 +332,35 @@ namespace ProgrammingExercises
                               "\n\t[C]alculator" +
                               "\n\t[X] Exit" +
                               "\n\n\tPlease choose your Exercise: ");
+
                 string choice = Console.ReadLine();
 
                 switch (choice)
                 {
-                    case "7": ExerciseSeven(); break;
-                    case "8": ExerciseEight(); break;
-                    case "10": ExerciseTen(); break;
-                    case "11": ExerciseEleven(); break;
-                    case "C": case "c": Calculator calcu = new Calculator(); calcu.CalculatorConsole(); break;
-                    case "X": case "x": cont = "X"; break;
-                    default:
-                        Console.Write("\n\tWrong Input! Do you wish to continue Y/N: ");
-                        cont = Console.ReadLine(); break;
+                    case "7":
+                        ExerciseSeven();
+                        break;
+                    case "8":
+                        ExerciseEight();
+                        break;
+                    case "10":
+                        ExerciseTen();
+                        break;
+                    case "11":
+                        ExerciseEleven();
+                        break;
+                    case "C":
+                    case "c":
+                        Calculator calcu = new Calculator();
+                        calcu.CalculatorConsole();
+                        break;
+                    case "X":
+                    case "x": break;
+                    
+
 
                 }
-            } while (cont == "Y" || cont == "y");
+            }
 
 
 
@@ -344,3 +370,4 @@ namespace ProgrammingExercises
 
 
 }
+
