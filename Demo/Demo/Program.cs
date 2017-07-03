@@ -10,15 +10,16 @@ namespace Demo
     {
         static void Main(string[] args)
         {
-            for (int j = 1; j <= 100; j++ )
+
+            string[] expression = new string[2];
+            Console.WriteLine("Enter the values:");
+            for (int i = 0; i < 2; i++)
             {
-                for (int k = 1; k <= 100; k++)
-                {
-                    Console.WriteLine("" + j + " * " + k + " = " + (j * k));
-                }
+                expression[i] = (Console.ReadLine());
+                Console.WriteLine("expression[{0}]: {1}", i,expression[i]);
             }
 
-            Console.ReadLine();
+
         }
     }
 }
