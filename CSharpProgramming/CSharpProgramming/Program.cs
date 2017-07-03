@@ -101,7 +101,6 @@ namespace CSharpProgramming
 
             do
             {
-                byte points;
                 Console.WriteLine("\n\n\tWelcome to Exercise Ten");
                 Console.WriteLine(
                     "\n\tWrite a program that applies bonus points to given scores in the range [1…9] by the following rules:" +
@@ -112,7 +111,7 @@ namespace CSharpProgramming
                 Console.Write("\n\n\tEnter points between 1 and 9: ");
 
 
-                points = Convert.ToByte(Console.ReadLine());
+                byte points = Convert.ToByte(Console.ReadLine());
                 if (points >= 1 && points <= 3)
                     Console.WriteLine("\n\tPoints multiplied by 10: {0}", points * 10);
                 else if (points >= 4 && points <= 6)
