@@ -108,7 +108,7 @@ namespace CSharpProgramming
                     "\n\t\t- If the score is between 4 and 6, the program multiplies it by 100." +
                     "\n\t\t- If the score is between 7 and 9, the program multiplies it by 1000." +
                     "\n\t\t- If the score is 0 or more than 9, the program prints an error message.");
-                Console.Write("\n\n\tEnter points between 1 and 9: ");
+                Console.Write("\n\n\tEnter points between 1 and 9: ");s
 
 
                 byte points = Convert.ToByte(Console.ReadLine());
