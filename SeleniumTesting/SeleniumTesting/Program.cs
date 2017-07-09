@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using NUnit.Core;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
-using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumTesting
 {
@@ -17,8 +10,11 @@ namespace SeleniumTesting
     {
 
         //Create Reference for the browser
+
+
         private readonly IWebDriver _driver = new ChromeDriver();
 
+        
         static void Main(string[] args)
         {
 
@@ -38,7 +34,7 @@ namespace SeleniumTesting
 
         [Test]
 
-        public void SignUp()
+        public void SignUpThruEmail()
         {
             Console.WriteLine("Executing Test SignUp.....");
             IWebElement firstNameElement = _driver.FindElement(By.Name("firstName"));
@@ -46,12 +42,14 @@ namespace SeleniumTesting
             IWebElement lastNameElement = _driver.FindElement(By.Name("lastName"));
             lastNameElement.SendKeys("Parker");
             IWebElement emailAddressElement = _driver.FindElement(By.Name("emailAddress"));
-            emailAddressElement.SendKeys("ar989g@gmail.com");
+            emailAddressElement.SendKeys("ar989g1@gmail.com");
             IWebElement passwordElement = _driver.FindElement(By.Name("password"));
             passwordElement.SendKeys("Aenipainahch@9");
             IWebElement joinButtonElement = _driver.FindElement(By.XPath("//*[@id=\"uno-reg-join\"]/div/div/div/div[2]/div[1]/div/div/form/fieldset/button/span"));
             joinButtonElement.Submit();
-
+            IWebElement countryCodeElement = _driver.FindElement(By.Name("countryCode"));
+            var selectElement = new SelectElement(countryCodeElement);
+            selectElement.SelectByIndex(167);
         }
 
         [Test]
@@ -69,6 +67,9 @@ namespace SeleniumTesting
             signInButtonElement.Submit();
         }
 
+
+
+
         [Test]
 
         public void WriteAnArticle()
@@ -80,8 +81,8 @@ namespace SeleniumTesting
             sharePostElement.SendKeys(Keys.Enter);
             IWebElement writePostElement = _driver.FindElement(By.ClassName("sharing-textarea__textarea--original"));
             writePostElement.SendKeys("Hello");
-            IWebElement PostElement = _driver.FindElement(By.ClassName("post"));
-            PostElement.SendKeys(Keys.Enter);
+            IWebElement postElement = _driver.FindElement(By.ClassName("post"));
+            postElement.SendKeys(Keys.Enter);
         }
 
 
