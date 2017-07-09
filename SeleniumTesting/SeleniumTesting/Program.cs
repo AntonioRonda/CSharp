@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumTesting
@@ -17,21 +18,14 @@ namespace SeleniumTesting
             Console.WriteLine("Running Final Assesment Selenium Testing in C#.....");
         }
 
-        [OneTimeSetUp]
-
-        public void Initialize()
-        {
-            _driver.Navigate().GoToUrl("https://www.linkedin.com/start/join?trk=hb_join");
-            Console.WriteLine("Opening the Browser.....");
-        }
-
-
-
+       
         [Test]
 
         public void SignUpThruEmail()
         {
             Console.WriteLine("Executing Test SignUp Function.....");
+            _driver.Navigate().GoToUrl("https://www.linkedin.com/start/join?trk=hb_join");
+            Console.WriteLine("Opening the Browser.....");
             IWebElement firstNameElement = _driver.FindElement(By.Name("firstName"));
             firstNameElement.SendKeys("Tony");
             IWebElement lastNameElement = _driver.FindElement(By.Name("lastName"));
@@ -96,12 +90,17 @@ namespace SeleniumTesting
             Console.WriteLine("Executing Test SearchPeople Function.....");
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             IWebElement searchFieldElement = _driver.FindElement(By.ClassName("ember-text-field"));
-            searchFieldElement.SendKeys("Antonio Santos Ronda Jr.");
+            searchFieldElement.SendKeys("Edzen Mark Cervito");
             IWebElement navigateSearchButtonElement = _driver.FindElement(By.ClassName("nav-search-button"));
             navigateSearchButtonElement.SendKeys(Keys.Enter);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            IWebElement actorNameElement = _driver.FindElement(By.PartialLinkText("Antonio Santos Ronda Jr."));
+            IWebElement actorNameElement = _driver.FindElement(By.PartialLinkText("Edzen Mark Cervito"));
             actorNameElement.Click();
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            IWebElement followButtonElement = _driver.FindElement(By.ClassName("pv-recent-activity-section__follow-button"));
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(followButtonElement).Click().Perform();
+
 
         }
 
