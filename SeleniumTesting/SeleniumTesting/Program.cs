@@ -18,7 +18,7 @@ namespace SeleniumTesting
             Console.WriteLine("Running Final Assesment Selenium Testing in C#.....");
         }
 
-       
+
         [Test]
 
         public void SignUpThruEmail()
@@ -100,9 +100,8 @@ namespace SeleniumTesting
             IWebElement followButtonElement = _driver.FindElement(By.ClassName("pv-recent-activity-section__follow-button"));
             Actions actions = new Actions(_driver);
             actions.MoveToElement(followButtonElement).Click().Perform();
-
-
         }
+
 
         [TearDown]
         public void Cleanup()
